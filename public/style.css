@@ -1,0 +1,154 @@
+/* 全局 */
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f5f7fb;
+  font-size: 14px;
+  color: #333;
+}
+
+/* 容器 */
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* 标题 */
+.title {
+  position: relative;
+  text-align: center;
+  font-size: 34px;
+  font-weight: 700;
+  color: #ff8c42; /* 橙色 */
+  margin-bottom: 30px;
+  font-family: "Nunito", sans-serif;
+}
+
+.logo {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80px; /* 放大 logo */
+}
+
+/* 卡片（每个 box） */
+.box {
+  background: #fff;
+  padding: 18px;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* label */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* 输入框 */
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  transition: 0.2s;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+/* course 输入 */
+.course-inputs {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.course-inputs input {
+  flex: 1;
+}
+
+/* 按钮 */
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* 顶部 + - 按钮 */
+.controls-top button {
+  background: #eef2ff;
+}
+
+.controls-top button:hover {
+  background: #dbe4ff;
+}
+
+/* 主按钮 */
+.main-btn {
+  width: 100%;
+  margin-top: 20px;
+  background: #ff8c42;
+  color: white;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.main-btn:hover {
+  background: #ff6200;
+}
+
+/* 表格 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th {
+  text-align: left;
+  font-weight: 600;
+  padding: 10px;
+  color: #666;
+}
+
+td {
+  padding: 8px;
+}
+
+/* 表格输入 */
+td input {
+  width: 100%;
+}
+
+/* 删除按钮禁用状态 */
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* 横向布局 */
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+/* 每个占一半 */
+.half {
+  flex: 1;
+}

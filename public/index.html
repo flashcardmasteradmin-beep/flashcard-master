@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flashcard Master</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+
+  <h1 class="title">
+    <img src="logo.png" class="logo">
+    Flashcard Master
+  </h1>
+
+  <div class="box">
+    <label>Province *</label>
+    <select id="province"></select>
+  </div>
+
+  <div class="box">
+    <label>Grade *</label>
+    <select id="grade"></select>
+  </div>
+
+  <div class="box">
+    <label>Course *</label>
+    <select id="course"></select>
+
+    <div class="course-inputs">
+      <input id="courseCodeInput" placeholder="Code">
+      <input id="courseTitleInput" placeholder="Title">
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="controls-top">
+      <button onclick="addRow()">+</button>
+      <button onclick="deleteRow()" id="del" disabled>-</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Front</th>
+          <th>Back</th>
+        </tr>
+      </thead>
+      <tbody id="table"></tbody>
+    </table>
+  </div>
+
+  <button class="main-btn" onclick="generate()">Get PDF</button>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
