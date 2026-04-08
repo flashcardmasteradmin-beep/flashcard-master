@@ -13,7 +13,7 @@ body {
 
 /* 容器 */
 .container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 40px auto;
   padding: 20px;
 }
@@ -71,6 +71,7 @@ input:focus, select:focus {
 /* course 输入 */
 .course-inputs {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   margin-top: 10px;
 }
@@ -109,6 +110,11 @@ button {
   border-radius: 12px;
 }
 
+.main-btn {
+  position: sticky;
+  bottom: 0;
+}
+
 .main-btn:hover {
   background: #ff6200;
 }
@@ -118,6 +124,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 th {
@@ -151,4 +158,75 @@ button:disabled {
 /* 每个占一半 */
 .half {
   flex: 1;
+}
+
+/* 整体布局 */
+.layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.sidebar {
+  flex: 0 0 240px;
+}
+
+.main {
+  flex: 1;
+}
+
+/* 标题 */
+.menu-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* 上传区域 */
+.upload-area {
+  border: 2px dashed #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
+  background: #fafafa;
+}
+
+.upload-area:hover {
+  border-color: #4a90e2;
+  background: #f0f6ff;
+}
+
+/* 拖拽时高亮 */
+.upload-area.dragover {
+  border-color: #4a90e2;
+  background: #e6f0ff;
+}
+
+/* 内容 */
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.upload-icon {
+  font-size: 28px;
+}
+
+.upload-text {
+  font-size: 14px;
+}
+
+.upload-subtext {
+  font-size: 12px;
+  color: #888;
+}
+
+/* 文件信息 */
+.upload-info {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #666;
 }

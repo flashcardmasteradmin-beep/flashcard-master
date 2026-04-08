@@ -8,7 +8,7 @@ initDrag();
 
 async function init() {
   await loadProvinces();
-  for (let i = 0; i < 2; i++) addRow();
+  for (let i = 0; i < 6; i++) addRow();
 }
 
 /* =========================
@@ -201,7 +201,7 @@ async function generate() {
 
   let courseId = currentCourseId;
 
-  // ✅ 处理 other
+  // 处理 other
   if (courseEl.value === "other") {
     const code = document.getElementById("courseCodeInput").value;
     const title = document.getElementById("courseTitleInput").value;
@@ -264,4 +264,99 @@ async function generate() {
   } catch {
     alert("PDF failed");
   }
+}
+
+/* =========================
+   CSV Upload（最终版）
+========================= */
+const uploadArea = document.getElementById("uploadArea");
+const fileInput = document.getElementById("csvFile");
+const uploadInfo = document.getElementById("uploadInfo");
+
+/* 点击触发 */
+uploadArea.addEventListener("click", () => fileInput.click());
+
+/* 拖拽上传 */
+uploadArea.addEventListener("dragover", e => {
+  e.preventDefault();
+  uploadArea.classList.add("dragover");
+});
+
+uploadArea.addEventListener("dragleave", () => {
+  uploadArea.classList.remove("dragover");
+});
+
+uploadArea.addEventListener("drop", e => {
+  e.preventDefault();
+  uploadArea.classList.remove("dragover");
+
+  const file = e.dataTransfer.files[0];
+  if (file) {
+    fileInput.files = e.dataTransfer.files;
+    handleCSV({ target: { files: [file] } });
+    showFileInfo(file);
+  }
+});
+
+/* 选择文件 */
+fileInput.addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (file) {
+    showFileInfo(file);
+    handleCSV(e);
+  }
+});
+
+/* 显示文件信息 */
+function showFileInfo(file) {
+  uploadInfo.textContent = `Uploaded: ${file.name}`;
+  uploadInfo.textContent = `Imported ${dataRows.length} cards`;
+}
+
+document.getElementById("csvFile").addEventListener("change", handleCSV);
+
+function handleCSV(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  // 文件类型检查
+  if (!file.name.toLowerCase().endsWith(".csv")) {
+    alert("Please upload a CSV file");
+    return;
+  }
+
+  Papa.parse(file, {
+    skipEmptyLines: true, // 自动忽略空行
+    complete: function(results) {
+
+      const rows = results.data;
+
+      // 自动判断是否有 header（如果第一行包含字母）
+      const hasHeader = rows.length && (
+        String(rows[0][0]).toLowerCase().includes("front") ||
+        String(rows[0][1]).toLowerCase().includes("back")
+      );
+
+      const dataRows = hasHeader ? rows.slice(1) : rows;
+
+      // 清空表格
+      table.innerHTML = "";
+
+      dataRows.forEach(row => {
+        const front = row[0]?.trim() || "";
+        const back = row[1]?.trim() || "";
+
+        if (!front && !back) return;
+
+        addRow();
+
+        const lastRow = table.lastChild;
+        lastRow.querySelector(".front").value = front;
+        lastRow.querySelector(".back").value = back;
+      });
+
+      // 自动滚动到顶部
+      document.querySelector(".main").scrollTop = 0;
+    }
+  });
 }

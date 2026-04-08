@@ -14,49 +14,85 @@
     Flashcard Master
   </h1>
 
-  <div class="box">
-    <label>Province *</label>
-    <select id="province"></select>
-  </div>
+  <div class="layout">
 
-  <div class="box">
-    <label>Grade *</label>
-    <select id="grade"></select>
-  </div>
+    <!-- 左侧菜单 -->
+    <div class="sidebar">
+      <h2 class="menu-title">Settings</h2>
 
-  <div class="box">
-    <label>Course *</label>
-    <select id="course"></select>
+      <div class="box">
+        <label>Province *</label>
+        <select id="province"></select>
+      </div>
 
-    <div class="course-inputs">
-      <input id="courseCodeInput" placeholder="Code">
-      <input id="courseTitleInput" placeholder="Title">
+      <div class="box">
+        <label>Grade *</label>
+        <select id="grade"></select>
+      </div>
+
+      <div class="box">
+        <label>Course *</label>
+        <select id="course"></select>
+
+        <div class="course-inputs">
+          <input id="courseCodeInput" placeholder="Course Code">
+          <input id="courseTitleInput" placeholder="Course Title">
+        </div>
+      </div>
+
+      <div class="box">
+        <label>Upload CSV</label>
+
+        <div class="upload-area" id="uploadArea">
+          <input type="file" id="csvFile" accept=".csv" hidden>
+
+          <div class="upload-content">
+            <div class="upload-icon">📄</div>
+            <div class="upload-text">
+              <strong>Click to upload</strong> or drag & drop
+            </div>
+            <div class="upload-subtext">
+              CSV files only
+            </div>
+          </div>
+        </div>
+
+        <div class="upload-info" id="uploadInfo"></div>
+      </div>
     </div>
-  </div>
 
-  <div class="box">
-    <div class="controls-top">
-      <button onclick="addRow()">+</button>
-      <button onclick="deleteRow()" id="del" disabled>-</button>
+    <!-- 右侧 -->
+    <div class="main">
+      <h2 class="main-title">Cards</h2>
+
+      <div class="box">
+        <div class="controls-top">
+          <button onclick="addRow()">+</button>
+          <button onclick="deleteRow()" id="del" disabled>-</button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Front</th>
+              <th>Back</th>
+            </tr>
+          </thead>
+          <tbody id="table"></tbody>
+        </table>
+      </div>
+
+      <button class="main-btn" onclick="generate()">Get PDF</button>
+
     </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>Front</th>
-          <th>Back</th>
-        </tr>
-      </thead>
-      <tbody id="table"></tbody>
-    </table>
   </div>
-
-  <button class="main-btn" onclick="generate()">Get PDF</button>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
